@@ -14,7 +14,6 @@ class Personal extends Model
         'nombre',
         'ape_paterno',
         'ape_materno',
-        'num_dni',
-        'correo',
+        'num_dni'
     ];
 }

@@ -1,0 +1,25 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+th, td {
+  width: 150px;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+}
+
+.input-label{
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  text-align: start;
+  padding-bottom: 10px;
+}

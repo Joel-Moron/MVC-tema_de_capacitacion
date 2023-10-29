@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('ape_paterno');
             $table->string('ape_materno');
             $table->integer('num_dni');
-            $table->string('correo');
             $table->timestamps();
         });
     }

@@ -10,14 +10,21 @@ use Illuminate\Support\Facades\DB;
 
 class PersonalController extends Controller
 {
+
     public function index()
     {
-        $personal = Personal::all();
+        try {
+            $personal = Personal::all();
 
+            if (count($personal) <= 0){
+                return response()->json(['menssage' => 'no existen personal registrados', 'data' => $personal], 200);
+            } 
 
-        if (count($personal) <= 0) return response()->json(['menssage' => 'no existen personal registrados', 'data' => $productos], 200);
+            return response()->json(['menssage' => 'registros del personal obtenidos','data' => $personal], 200);
+        } catch (\Exception $e) {
+            return response()->json($e , 500);
+        }
 
-        return response()->json(['menssage' => 'registros del personal obtenidos','data' => $personal], 200);
     }
 
 
@@ -30,16 +37,14 @@ class PersonalController extends Controller
                 'nombre' => 'required',
                 'ape_paterno' => 'required',
                 'ape_materno' => 'required',
-                'num_dni' => 'required',
-                'correo' => 'required',
+                'num_dni' => 'required'
             ]);
             
             $personal = Personal::create([
                 'nombre' => $request->nombre,
                 'ape_paterno' => $request->ape_paterno,
                 'ape_materno' => $request->ape_materno,
-                'num_dni' => $request->num_dni,
-                'correo' => $request->correo
+                'num_dni' => $request->num_dni
             ],[]);
             DB::commit();
             return response()->json(['message' => 'personal registrado'], 200);
@@ -50,6 +55,5 @@ class PersonalController extends Controller
             DB::rollBack();
             return response()->json($e , 500);
         }
-            
     }
 }
